@@ -157,9 +157,9 @@ Block Size Used:
 
 | Test Case | Matrix Size | Simple GEMM (µs) | Blocked GEMM (µs) |
 |-----------|------------:|-----------------:|------------------:|
-| Test 1 | 50 × 50 | _____ | _____ |
-| Test 2 | 256 × 256 | _____ | _____ |
-| Test 3 | 1000 × 1000 | _____ | _____ |
+| Test 1 | 50 × 50 | 151 | 227 |
+| Test 2 | 256 × 256 | 23023 | 21719 |
+| Test 3 | 1000 × 1000 | 2072760  |  1258391 |
 
 > Replace the above values with the execution times obtained on your system.
 
