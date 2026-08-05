@@ -1,59 +1,70 @@
-# CS509_2026CSM1031
-i did a change
-i have added gemm.h file
-i have added simple_gemm.cpp file
-i have added blocked_gemm.cpp file
-
 # Matrix Multiplication using Simple GEMM and Blocked GEMM
 
 ## Overview
 
-This assignment implements two different approaches for matrix multiplication in C++:
+This project implements matrix multiplication using two different approaches in C++:
 
-1. **Simple GEMM** – Performs the standard matrix multiplication using three nested loops.
-2. **Blocked GEMM** – Uses the blocking (tiling) technique to improve cache utilization and reduce execution time for larger matrices.
+- **Simple GEMM** – Standard triple nested loop matrix multiplication.
+- **Blocked GEMM** – Matrix multiplication using the blocking (tiling) technique to improve cache performance.
 
-The program executes both implementations, prints the resulting matrices, and compares their execution times.
+Both implementations generate the same output, while the blocked version is expected to perform better for larger matrices.
 
 ---
 
-## Files Included
+## Project Structure
 
 | File | Description |
 |------|-------------|
-| `driver.cpp` | Main program that reads input, calls both GEMM implementations, and measures execution time. |
-| `gemm.h` | Header file containing function declarations. |
-| `simple_gemm.cpp` | Standard matrix multiplication implementation. |
-| `blocked_gemm.cpp` | Blocked (tiled) matrix multiplication implementation. |
-| `gemm_test_01.txt` | Small sample input for testing correctness. |
-| `gemm_test_50x50.txt` | 50 × 50 matrix input. |
-| `gemm_test_256x256.txt` | 256 × 256 matrix input. |
-| `gemm_test_1000x1000.txt` | 1000 × 1000 matrix input. |
+| `driver.cpp` | Reads input, executes both algorithms and measures execution time |
+| `gemm.h` | Function declarations |
+| `simple_gemm.cpp` | Standard matrix multiplication |
+| `blocked_gemm.cpp` | Blocked (tiled) matrix multiplication |
+| `Makefile` | Automates compilation and cleaning |
+| `gemm_test_01.txt` | Small sample test case |
+| `gemm_test_50x50.txt` | 50 × 50 matrix input |
+| `gemm_test_256x256.txt` | 256 × 256 matrix input |
+| `gemm_test_1000x1000.txt` | 1000 × 1000 matrix input |
 
 ---
 
 ## Compilation
 
-Compile the program using g++:
+### Using Makefile (Recommended)
+
+Compile the project:
 
 ```bash
-g++ driver.cpp simple_gemm.cpp blocked_gemm.cpp -o gemm
+make
+```
+
+Clean generated files:
+
+```bash
+make clean
+```
+
+Rebuild the project:
+
+```bash
+make rebuild
+```
+
+---
+
+### Manual Compilation
+
+```bash
+g++ -std=c++17 driver.cpp simple_gemm.cpp blocked_gemm.cpp -o gemm
 ```
 
 ---
 
 ## Running the Program
 
-Run the executable:
+Execute:
 
 ```bash
 ./gemm
-```
-
-or on Windows:
-
-```bash
-gemm.exe
 ```
 
 When prompted, enter the input file name.
@@ -61,7 +72,7 @@ When prompted, enter the input file name.
 Example:
 
 ```
-Enter input file name :
+Enter input file name:
 gemm_test_50x50.txt
 ```
 
@@ -78,23 +89,24 @@ M K N
 where
 
 - **M** = Number of rows in Matrix A
-- **K** = Number of columns in Matrix A (and rows in Matrix B)
+- **K** = Number of columns in Matrix A (also rows in Matrix B)
 - **N** = Number of columns in Matrix B
 
-The next **M** lines contain Matrix **A**, followed by **K** lines containing Matrix **B**.
+After that,
+
+- Next **M** lines → Matrix **A**
+- Next **K** lines → Matrix **B**
 
 ---
 
 ## Output
 
-The program displays:
+The program prints:
 
-- Result of Simple GEMM
+- Result matrix using Simple GEMM
 - Execution time of Simple GEMM
-- Result of Blocked GEMM
+- Result matrix using Blocked GEMM
 - Execution time of Blocked GEMM
-
-This allows easy comparison of both implementations.
 
 ---
 
@@ -102,14 +114,7 @@ This allows easy comparison of both implementations.
 
 ### Simple GEMM
 
-The simple implementation uses the traditional three nested loops.
-
-```
-for i
-    for j
-        for k
-            C[i][j] += A[i][k] * B[k][j]
-```
+Uses the traditional three nested loops.
 
 Time Complexity:
 
@@ -121,31 +126,45 @@ O(M × K × N)
 
 ### Blocked GEMM
 
-The blocked implementation divides matrices into smaller blocks (tiles). Instead of processing the whole matrix at once, multiplication is performed block by block.
+The matrix is divided into smaller blocks (tiles). Each block is multiplied independently, which improves cache locality and reduces cache misses.
 
 Advantages:
 
 - Better cache utilization
 - Reduced cache misses
-- Faster execution for large matrices
+- Improved performance for large matrices
 
-The block size used in this assignment is **32**.
+Block Size Used:
+
+```
+32
+```
 
 ---
 
-## Sample Test Files
+## Test Cases
 
-The repository contains multiple test cases:
+| Input File | Matrix Size |
+|------------|------------:|
+| `gemm_test_01.txt` | 2 × 3 × 2 |
+| `gemm_test_50x50.txt` | 50 × 50 × 50 |
+| `gemm_test_256x256.txt` | 256 × 256 × 256 |
+| `gemm_test_1000x1000.txt` | 1000 × 1000 × 1000 |
 
-- Small matrix
-- 50 × 50 matrix
-- 256 × 256 matrix
-- 1000 × 1000 matrix
+---
 
-These inputs can be used to observe the performance difference between the two implementations.
+## Performance Results
+
+| Test Case | Matrix Size | Simple GEMM (µs) | Blocked GEMM (µs) |
+|-----------|------------:|-----------------:|------------------:|
+| Test 1 | 50 × 50 | _____ | _____ |
+| Test 2 | 256 × 256 | _____ | _____ |
+| Test 3 | 1000 × 1000 | _____ | _____ |
+
+> Replace the above values with the execution times obtained on your system.
 
 ---
 
 ## Conclusion
 
-This assignment demonstrates that while both algorithms produce the same output, the blocked GEMM implementation is generally more efficient for large matrices because it makes better use of the CPU cache. The performance improvement becomes more noticeable as the matrix size increases.
+Both implementations produce identical matrix multiplication results. The blocked implementation improves memory access patterns by processing smaller matrix blocks, resulting in better cache utilization and improved execution time for larger matrices. As the matrix size increases, the performance advantage of the blocked algorithm becomes more noticeable.
