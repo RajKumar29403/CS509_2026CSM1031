@@ -6,7 +6,7 @@
 
 using namespace std;
 
-bool readAdjacencyList(string filename, Graph &graph, int &source)
+bool readAdjacencyList(const string &filename, Graph &graph , int &source)
 {
     ifstream fin(filename);
 
@@ -54,7 +54,7 @@ bool readAdjacencyList(string filename, Graph &graph, int &source)
     return true;
 }
 
-bool readAdjacencyMatrix(string filename, vector<vector<int>> &matrix)
+bool readAdjacencyMatrix(const string &filename , vector<vector<int>> &matrix)
 {
     ifstream fin(filename);
 
