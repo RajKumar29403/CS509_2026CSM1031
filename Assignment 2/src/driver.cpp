@@ -11,7 +11,7 @@ using namespace chrono;
 
 const int INF = 1000000000;
 
-int main()
+int assignment2()
 {
     int choice;
 
@@ -27,6 +27,7 @@ int main()
 
     cout << "Enter input file : ";
     cin >> filename;
+    filename = "Assignment 2/" + filename;
 
     if(choice == 1)
     {
@@ -109,9 +110,9 @@ int main()
         {
             cout << "\nDistance Matrix\n\n";
 
-            for(int i=0;i<matrix.size();i++)
+            for(size_t i = 0; i < matrix.size(); i++)
             {
-                for(int j=0;j<matrix.size();j++)
+                for(size_t j = 0; j < matrix.size(); j++)
                 {
                     if(matrix[i][j] == INF)
                         cout << "INF ";

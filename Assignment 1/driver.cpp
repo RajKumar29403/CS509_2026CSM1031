@@ -19,7 +19,7 @@ void printMatrix(const vector<vector<int>>& C)
     }
 }
 
-int main()
+int assignment1()
 {
     string filename;
 

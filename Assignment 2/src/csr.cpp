@@ -14,7 +14,7 @@ void convertToCSR(Graph &graph, CSR &csr)
 
     for (int i = 0; i < graph.V; i++)
     {
-        for (int j = 0; j < graph.adjList[i].size(); j++)
+        for (size_t j = 0; j < graph.adjList[i].size(); j++)
         {
             csr.col_idx.push_back(graph.adjList[i][j].dest);
             csr.values.push_back(graph.adjList[i][j].weight);
