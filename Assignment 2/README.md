@@ -389,6 +389,31 @@ On Windows:
 cs509.exe
 ```
 
+========================================
+        CS509 Programming Assignment
+========================================
+
+1. Assignment 1
+2. Assignment 2
+3. Exit
+
+Enter your choice :
+```
+
+Select:
+
+```text
+1
+```
+
+for running Assignment 1, or:
+
+```text
+2
+```
+
+for running Assignment 2.
+
 The Assignment 2 menu is:
 
 ```text
