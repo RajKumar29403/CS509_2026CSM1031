@@ -406,13 +406,13 @@ Select:
 1
 ```
 
-for Bellman-Ford, or:
+for running Assignment 1, or:
 
 ```text
 2
 ```
 
-for Floyd-Warshall.
+for running Assignment 2.
 
 The Assignment 2 menu is:
 
