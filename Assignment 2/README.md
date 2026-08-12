@@ -389,6 +389,7 @@ On Windows:
 cs509.exe
 ```
 
+```text
 ========================================
         CS509 Programming Assignment
 ========================================
@@ -396,23 +397,22 @@ cs509.exe
 1. Assignment 1
 2. Assignment 2
 3. Exit
-
-Enter your choice :
 ```
 
+Enter your choice :
 Select:
 
 ```text
 1
 ```
 
-for running Assignment 1, or:
+for Bellman-Ford, or:
 
 ```text
 2
 ```
 
-for running Assignment 2.
+for Floyd-Warshall.
 
 The Assignment 2 menu is:
 
