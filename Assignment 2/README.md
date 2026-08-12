@@ -512,6 +512,34 @@ This allows the reported time to focus on the algorithm execution.
 
 ---
 
+## Execution Time Results
+
+Record the execution time obtained after running each test case.
+
+### Bellman-Ford Execution Time
+
+| Input File | Vertices (V) | Edges (E) | Execution Time (µs) |
+|---|---:|---:|---:|
+| `bf_10.txt` | 10 | 20 | ______ |
+| `bf_100.txt` | 100 | 300 | ______ |
+| `bf_10000.txt` | 10,000 | 25,000 | ______ |
+| `bf_50000.txt` | 50,000 | 120,000 | ______ |
+| `bf_100000.txt` | 100,000 | 250,000 | ______ |
+
+### Floyd-Warshall Execution Time
+
+| Input File | Vertices (V) | Execution Time (µs) |
+|---|---:|---:|
+| `fw_10.txt` | 10 | ______ |
+| `fw_100.txt` | 100 | ______ |
+| `fw_500.txt` | 500 | ______ |
+| `fw_1000.txt` | 1,000 | ______ |
+| `fw_2000.txt` | 2,000 | ______ |
+
+> **Note:** Fill in the execution-time values after running the program. The reported values should be taken directly from the program output and should be recorded in microseconds (µs).
+
+---
+
 ## Source Files
 
 ### `driver.cpp`
