@@ -18,10 +18,6 @@ The implementation also includes:
 - Execution-time measurement
 - Negative-cycle detection
 
-> **Note:** Assignment 1 is intentionally not documented or included in the scope of this README.
-
----
-
 ## Project Structure
 
 ```text
@@ -561,9 +557,6 @@ Record the execution time obtained after running each test case.
 | `fw_1000.txt` | 1,000 | 10946355 |
 | `fw_2000.txt` | 2,000 | 86377382 |
 
-> **Note:** Fill in the execution-time values after running the program. The reported values should be taken directly from the program output and should be recorded in microseconds (µs).
-
----
 
 ## Source Files
 
