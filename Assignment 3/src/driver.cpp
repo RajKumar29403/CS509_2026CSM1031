@@ -12,15 +12,13 @@ using namespace chrono;
 bool readMSTInput(const string &filename, Graph &graph)
 {
     ifstream fin(filename);
-
     if (!fin)
     {
-        cout << "Unable to open file : " << filename << endl;
+        cout << "Unable to open file: " << filename << endl;
         return false;
     }
 
     int V, E;
-
     if (!(fin >> V >> E))
     {
         cout << "Invalid MST input file." << endl;
@@ -53,8 +51,7 @@ bool readMSTInput(const string &filename, Graph &graph)
 
         if (vertex < 0 || vertex >= V)
         {
-            cout << "Invalid vertex number : "
-                 << vertex << endl;
+            cout << "Invalid vertex: " << vertex << endl;
             return false;
         }
 
@@ -80,7 +77,7 @@ bool readMSTInput(const string &filename, Graph &graph)
 
             if (neighbour < 0 || neighbour >= V)
             {
-                cout << "Invalid neighbour vertex : "
+                cout << "Invalid neighbour: "
                      << neighbour << endl;
                 return false;
             }
@@ -99,12 +96,13 @@ bool readMSTInput(const string &filename, Graph &graph)
     return true;
 }
 
-void printMSTResult(const string &algorithm,
-                    const MSTResult &result,
-                    double executionTime)
+void printMSTResult(
+    const string &algorithm,
+    const MSTResult &result,
+    double executionTime)
 {
     cout << "\n=====================================\n";
-    cout << "Algorithm : " << algorithm << "'s MST\n";
+    cout << "Algorithm: " << algorithm << "'s MST\n";
     cout << "=====================================\n";
 
     cout << "\nMST edges:\n";
@@ -116,12 +114,12 @@ void printMSTResult(const string &algorithm,
              << edge.weight << endl;
     }
 
-    cout << "\nTotal MST weight : "
+    cout << "\nTotal MST weight: "
          << result.totalWeight << endl;
 
     cout << fixed << setprecision(6);
 
-    cout << "Execution time : "
+    cout << "Execution time: "
          << executionTime
          << " ms\n";
 }
@@ -139,7 +137,7 @@ int assignment3()
     cout << "3. Run Both Algorithms\n";
     cout << "=====================================\n";
 
-    cout << "Enter your choice : ";
+    cout << "Enter your choice: ";
     cin >> choice;
 
 
@@ -152,7 +150,7 @@ int assignment3()
 
     string filename;
 
-    cout << "Enter input file : ";
+    cout << "Enter input file: ";
     cin >> filename;
     Graph graph;
 
@@ -165,16 +163,21 @@ int assignment3()
 
     convertToCSR(graph, csr);
 
+    MSTResult kruskalResult;
+    MSTResult primResult;
+
+    double kruskalTime = 0.0;
+    double primTime = 0.0;
+
     if (choice == 1 || choice == 3)
     {
         auto start = high_resolution_clock::now();
 
-        MSTResult kruskalResult =
-            kruskalMST(graph, csr);
+        kruskalResult = kruskalMST(graph, csr);
 
         auto stop = high_resolution_clock::now();
 
-        double time =
+        kruskalTime =
             duration<double, milli>(stop - start).count();
 
 
@@ -191,7 +194,7 @@ int assignment3()
         printMSTResult(
             "Kruskal",
             kruskalResult,
-            time
+            kruskalTime
         );
     }
 
@@ -199,12 +202,11 @@ int assignment3()
     {
         auto start = high_resolution_clock::now();
 
-        MSTResult primResult =
-            primMST(graph, csr);
+        primResult = primMST(graph, csr);
 
         auto stop = high_resolution_clock::now();
 
-        double time =
+        primTime =
             duration<double, milli>(stop - start).count();
 
 
@@ -221,69 +223,42 @@ int assignment3()
         printMSTResult(
             "Prim",
             primResult,
-            time
+            primTime
         );
     }
 
     if (choice == 3)
     {
-        auto startK = high_resolution_clock::now();
-
-        MSTResult kruskalResult =
-            kruskalMST(graph, csr);
-
-        auto stopK = high_resolution_clock::now();
-
-        double kruskalTime =
-            duration<double, milli>(
-                stopK - startK
-            ).count();
-
-
-        auto startP = high_resolution_clock::now();
-
-        MSTResult primResult =
-            primMST(graph, csr);
-
-        auto stopP = high_resolution_clock::now();
-
-        double primTime =
-            duration<double, milli>(
-                stopP - startP
-            ).count();
-
-
         cout << "\n=====================================\n";
-        cout << "        MST Comparison\n";
+        cout << "           MST Comparison\n";
         cout << "=====================================\n";
 
-        cout << "Kruskal total weight : "
+        cout << "Kruskal total weight: "
              << kruskalResult.totalWeight
              << endl;
 
-        cout << "Prim total weight    : "
+        cout << "Prim total weight:    "
              << primResult.totalWeight
              << endl;
+
 
         if (kruskalResult.totalWeight ==
             primResult.totalWeight)
         {
-            cout << "\nTotal weights equal : Yes\n";
-            cout << "Status : PASS\n";
+            cout << "\nTotal weights equal: Yes\n";
+            cout << "Status: PASS\n";
         }
         else
         {
-            cout << "\nTotal weights equal : No\n";
-            cout << "Status : FAIL\n";
+            cout << "\nTotal weights equal: No\n";
+            cout << "Status: FAIL\n";
         }
-
         cout << fixed << setprecision(6);
-
-        cout << "\nKruskal execution time : "
+        cout << "\nKruskal execution time: "
              << kruskalTime
              << " ms\n";
 
-        cout << "Prim execution time    : "
+        cout << "Prim execution time:    "
              << primTime
              << " ms\n";
     }
