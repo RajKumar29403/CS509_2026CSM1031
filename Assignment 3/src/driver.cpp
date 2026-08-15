@@ -151,7 +151,9 @@ int assignment3()
     string filename;
 
     cout << "Enter input file: ";
-    cin >> filename;
+    cin >> ws;
+    getline(cin, filename);
+    
     Graph graph;
 
     if (!readMSTInput(filename, graph))
