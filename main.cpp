@@ -8,20 +8,28 @@ int assignment1();
 // Assignment 2
 int assignment2();
 
+// Assignment 3
+int assignment3();
+
+
 int main()
 {
+    int choice;
+
     while (true)
     {
-        int choice;
-
         cout << "\n=====================================\n";
         cout << "      CS509 Programming Assignment\n";
         cout << "=====================================\n";
+
         cout << "1. Assignment 1\n";
         cout << "2. Assignment 2\n";
-        cout << "3. Exit\n";
+        cout << "3. Assignment 3\n";
+        cout << "4. Exit\n\n";
+
         cout << "Enter your choice : ";
         cin >> choice;
+
 
         switch (choice)
         {
@@ -34,24 +42,15 @@ int main()
                 break;
 
             case 3:
+                assignment3();
+                break;
+
+            case 4:
                 cout << "\nThank You!\n";
                 return 0;
 
             default:
-                cout << "\nInvalid Choice!\n";
-                continue;
-        }
-
-        char again;
-        cout << "\nReturn to Main Menu? (y/n): ";
-        cin >> again;
-
-        if (again == 'n' || again == 'N')
-        {
-            cout << "\nThank You!\n";
-            break;
+                cout << "\nInvalid Choice.\n";
         }
     }
-
-    return 0;
 }
