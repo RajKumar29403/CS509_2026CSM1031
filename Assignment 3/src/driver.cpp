@@ -5,15 +5,11 @@
 #include <fstream>
 #include <chrono>
 #include <iomanip>
-
 using namespace std;
 using namespace chrono;
-
-
 bool readMSTInput(const string &filename, Graph &graph)
 {
     ifstream fin(filename);
-
     if (!fin)
     {
         cout << "Unable to open file: "
@@ -21,9 +17,7 @@ bool readMSTInput(const string &filename, Graph &graph)
 
         return false;
     }
-
     int V, E;
-
     if (!(fin >> V >> E))
     {
         cout << "Invalid MST input file."
@@ -31,7 +25,6 @@ bool readMSTInput(const string &filename, Graph &graph)
 
         return false;
     }
-
     if (V <= 0 || E < 0)
     {
         cout << "Invalid number of vertices or edges."
@@ -39,19 +32,14 @@ bool readMSTInput(const string &filename, Graph &graph)
 
         return false;
     }
-
     graph.V = V;
     graph.E = E;
-
     graph.adjList.clear();
     graph.adjList.resize(V);
-
-
     for (int i = 0; i < V; i++)
     {
         int vertex;
         int degree;
-
         if (!(fin >> vertex >> degree))
         {
             cout << "Invalid adjacency list."
@@ -59,7 +47,6 @@ bool readMSTInput(const string &filename, Graph &graph)
 
             return false;
         }
-
         if (vertex < 0 || vertex >= V)
         {
             cout << "Invalid vertex: "
@@ -67,7 +54,6 @@ bool readMSTInput(const string &filename, Graph &graph)
 
             return false;
         }
-
         if (degree < 0)
         {
             cout << "Invalid degree for vertex "
@@ -75,13 +61,10 @@ bool readMSTInput(const string &filename, Graph &graph)
 
             return false;
         }
-
-
         for (int j = 0; j < degree; j++)
         {
             int neighbour;
             int weight;
-
             if (!(fin >> neighbour >> weight))
             {
                 cout << "Invalid edge data for vertex "
@@ -89,7 +72,6 @@ bool readMSTInput(const string &filename, Graph &graph)
 
                 return false;
             }
-
             if (neighbour < 0 || neighbour >= V)
             {
                 cout << "Invalid neighbour: "
@@ -97,22 +79,15 @@ bool readMSTInput(const string &filename, Graph &graph)
 
                 return false;
             }
-
             Edge edge;
-
             edge.dest = neighbour;
             edge.weight = weight;
-
             graph.adjList[vertex].push_back(edge);
         }
     }
-
     fin.close();
-
     return true;
 }
-
-
 void printMSTResult(
     const string &algorithm,
     const MSTResult &result,
@@ -123,9 +98,7 @@ void printMSTResult(
          << algorithm
          << "'s MST\n";
     cout << "=====================================\n";
-
     cout << "\nMST edges:\n";
-
     for (const MSTEdge &edge : result.edges)
     {
         cout << edge.u << " "
@@ -133,13 +106,11 @@ void printMSTResult(
              << edge.weight
              << endl;
     }
-
     cout << "\nTotal MST weight: "
          << result.totalWeight
          << endl;
 
     cout << fixed << setprecision(6);
-
     cout << "Execution time: "
          << executionTime
          << " ms\n";
@@ -153,110 +124,70 @@ int assignment3()
     cout << "\n=====================================\n";
     cout << "          Assignment 3 - MST\n";
     cout << "=====================================\n";
-
     cout << "1. Kruskal's Algorithm\n";
     cout << "2. Prim's Algorithm\n";
     cout << "3. Run Both Algorithms\n";
-
     cout << "=====================================\n";
-
     cout << "Enter your choice: ";
     cin >> choice;
-
-
     if (choice < 1 || choice > 3)
     {
         cout << "\nInvalid Choice.\n";
 
         return 0;
     }
-
     cout << "\n=====================================\n";
     cout << "           Select Input File\n";
     cout << "=====================================\n";
-
     cout << "1. MST - 10 vertices\n";
     cout << "2. MST - 100 vertices\n";
     cout << "3. MST - 10000 vertices\n";
     cout << "4. MST - 50000 vertices\n";
     cout << "5. MST - 100000 vertices\n";
     cout << "6. Back to Main Menu\n";
-
     cout << "=====================================\n";
-
     cout << "Enter your choice: ";
     cin >> fileChoice;
-
-
     string filename;
     const string inputDirectory =
         "Assignment 3/input/mst/";
-
     switch (fileChoice)
     {
         case 1:
-
             filename =
                 inputDirectory + "mst_10.txt";
 
             break;
-
-
         case 2:
-
             filename =
                 inputDirectory + "mst_100.txt";
-
             break;
-
-
         case 3:
-
             filename =
                 inputDirectory + "mst_10000.txt";
 
             break;
-
-
         case 4:
-
             filename =
                 inputDirectory + "mst_50000.txt";
-
             break;
-
-
         case 5:
-
             filename =
                 inputDirectory + "mst_100000.txt";
-
             break;
-
-
         case 6:
-
             cout << "\nReturning to Main Menu..."
                  << endl;
-
             return 0;
-
-
         default:
-
             cout << "\nInvalid File Choice."
                  << endl;
-
             return 0;
     }
-
-
     cout << "\nSelected input file: "
          << filename
          << endl;
-
     Graph graph;
-
     if (!readMSTInput(filename, graph))
     {
         return 0;
