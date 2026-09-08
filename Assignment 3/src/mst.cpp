@@ -105,7 +105,7 @@ MSTResult kruskalMST(const Graph &graph, const CSR &csr)
 
             result.totalWeight += edge.weight;
 
-            if (result.edges.size() == graph.V - 1)
+            if ((int)result.edges.size() == graph.V - 1)
                 break;
         }
     }
