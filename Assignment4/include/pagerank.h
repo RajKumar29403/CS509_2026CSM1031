@@ -1,18 +1,11 @@
 #ifndef PAGERANK_H
 #define PAGERANK_H
 
+#include "csr_graph.h"
+
 #include <vector>
 
 using namespace std;
-
-struct CSRGraph
-{
-    int V;
-    int E;
-
-    vector<int> row_ptr;
-    vector<int> col_idx;
-};
 
 class PageRank
 {

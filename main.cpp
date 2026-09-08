@@ -1,3 +1,4 @@
+#include "Assignment4/include/driver.h"
 #include <iostream>
 
 using namespace std;
@@ -25,9 +26,11 @@ int main()
         cout << "1. Assignment 1\n";
         cout << "2. Assignment 2\n";
         cout << "3. Assignment 3\n";
-        cout << "4. Exit\n\n";
+        cout << "4. Assignment 4\n";
+        cout << "5. Exit\n\n";
 
         cout << "Enter your choice : ";
+
         if (!(cin >> choice))
         {
             cin.clear();
@@ -36,7 +39,6 @@ int main()
             cout << "\nInvalid input. Please enter a number.\n";
             continue;
         }
-
 
         switch (choice)
         {
@@ -53,6 +55,10 @@ int main()
                 break;
 
             case 4:
+                assignment4();
+                break;
+
+            case 5:
                 cout << "\nThank You!\n";
                 return 0;
 
@@ -60,4 +66,6 @@ int main()
                 cout << "\nInvalid Choice.\n";
         }
     }
+
+    return 0;
 }

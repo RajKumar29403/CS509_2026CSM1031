@@ -1,7 +1,7 @@
 #include "../include/pagerank.h"
 
 #include <cmath>
-#include <numeric>
+#include <algorithm>
 
 using namespace std;
 
@@ -37,33 +37,37 @@ vector<double> PageRank::compute()
 
     for(int iter = 1; iter <= maxIterations; iter++)
     {
-        fill(newRank.begin(),
-             newRank.end(),
-             (1.0 - dampingFactor) / N);
+        fill(
+            newRank.begin(),
+            newRank.end(),
+            (1.0 - dampingFactor) / N
+        );
 
-        double danglingContribution = 0.0;
+        double danglingMass = 0.0;
 
         for(int u = 0; u < N; u++)
         {
             if(outDegree[u] == 0)
             {
-                danglingContribution += rank[u];
+                danglingMass += rank[u];
             }
         }
 
-        danglingContribution =
+        danglingMass =
             dampingFactor *
-            danglingContribution / N;
+            danglingMass / N;
 
         for(int v = 0; v < N; v++)
         {
-            newRank[v] += danglingContribution;
+            newRank[v] += danglingMass;
         }
 
         for(int u = 0; u < N; u++)
         {
             if(outDegree[u] == 0)
+            {
                 continue;
+            }
 
             double contribution =
                 dampingFactor *

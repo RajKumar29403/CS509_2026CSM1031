@@ -5,7 +5,10 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall
 
 # Include directories
-INCLUDES = -I"Assignment 1" -I"Assignment 2/include"
+INCLUDES = \
+-I"Assignment 1" \
+-I"Assignment 2/include" \
+-I"Assignment4/include"
 
 # Assignment 1 sources
 A1_SRC = \
@@ -15,17 +18,23 @@ A1_SRC = \
 
 # Assignment 2 sources
 A2_SRC = \
-"Assignment 2/src/driver.cpp" \
 "Assignment 2/src/graph.cpp" \
 "Assignment 2/src/csr.cpp" \
 "Assignment 2/src/bellman_ford.cpp" \
 "Assignment 2/src/floyd_warshall.cpp"
 
-# Wrapper source
+# Assignment 4 sources
+A4_SRC = \
+"Assignment4/src/driver.cpp" \
+"Assignment4/src/csr_converter.cpp" \
+"Assignment4/src/vertex_coloring.cpp" \
+"Assignment4/src/pagerank.cpp"
+
+# Main wrapper
 MAIN = main.cpp
 
 # All sources
-SRC = $(MAIN) $(A1_SRC) $(A2_SRC)
+SRC = $(MAIN) $(A1_SRC) $(A2_SRC) $(A4_SRC)
 
 # Executable
 TARGET = cs509
