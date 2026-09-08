@@ -1,10 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <chrono>
-
+#include<bits/stdc++.h>
 #include "gemm.h"
-
 using namespace std;
 using namespace chrono;
 
@@ -21,10 +16,38 @@ void printMatrix(const vector<vector<int>>& C)
 
 int assignment1()
 {
+    int choice;
+    cout << "\nSelect Test Case:\n";
+    cout << "1. 2x2\n";
+    cout << "2. 50x50\n";
+    cout << "3. 100x100\n";
+    cout << "4. 200x200\n";
+    cout << "5. 500x500\n";
+    cout << "Enter choice: ";
+    cin >> choice;
     string filename;
 
-    cout<<"Enter input file name : ";
-    cin>>filename;
+switch(choice)
+{
+    case 1:
+        filename = "gemm_test_01.txt";
+        break;
+    case 2:
+        filename = "gemm_test_50x50.txt";
+        break;
+    case 3:
+        filename = "gemm_test_100x100.txt";
+        break;
+    case 4:
+        filename = "gemm_test_200x200.txt";
+        break;
+    case 5:
+        filename = "gemm_test_500x500.txt";
+        break;
+    default:
+        cout << "Invalid choice\n";
+        return 1;
+}
 
     ifstream fin(filename);
 
